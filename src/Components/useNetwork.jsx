@@ -7,6 +7,10 @@ const useNetworkStatus = () => {
   const [networkStatus, setNetworkStatus] = useState(true);
 
   useEffect(() => {
+    const changeStatus = () => {
+      setNetworkStatus(navigator.onLine);
+      navigator.onLine ? toast("Wow so easy!") : toast("check connection");
+    };
     window.addEventListener("online", changeStatus);
     window.addEventListener("offline", changeStatus);
     return () => {
@@ -23,15 +27,6 @@ const useNetworkStatus = () => {
     loop: true,
   };
 
-  const changeStatus = () => {
-    setNetworkStatus(navigator.onLine);
-    console.log(navigator.onLine);
-    if (navigator.onLine) {
-      toast("Wow so easy!");
-    } else {
-      toast("check connection");
-    }
-  };
   const { View } = useLottie(networkStatus ? optionsOnline : optionsOffline);
   return { View };
 };
