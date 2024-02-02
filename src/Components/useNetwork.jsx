@@ -19,15 +19,11 @@ const useNetworkStatus = () => {
     };
   }, []);
   const optionsOnline = {
-    animationData: online,
-    loop: true,
-  };
-  const optionsOffline = {
-    animationData: offline,
+    animationData: networkStatus ? online : offline,
     loop: true,
   };
 
-  const { View } = useLottie(networkStatus ? optionsOnline : optionsOffline);
+  const { View } = useLottie(optionsOnline);
   return { View };
 };
 
